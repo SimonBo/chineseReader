@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  traditional_char: MyString
+  simplified_char: MyString
+  pronunciation: MyString
+  meaning: MyString
+
+two:
+  traditional_char: MyString
+  simplified_char: MyString
+  pronunciation: MyString
+  meaning: MyString

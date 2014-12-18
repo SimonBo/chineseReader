@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<div id="dict">
+  <div id='character'></div>
+  <div id='pronunciation'></div>
+  <div id='meaning'></div>
+</div>  
+
+<p>
+  <strong>Content:</strong>
+  <% @text.content.each_char do |c| %>
+    <span class='character'><%= c %></span>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_text_path(@text) %> |
+<%= link_to 'Back', texts_path %>
