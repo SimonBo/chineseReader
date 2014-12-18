@@ -62,8 +62,8 @@ class WordsController < ApplicationController
   end
 
   def find
-    # respond_to :json
-    @word = Word.where("simplified_char = ?" , params[:word].delete(":"))
+    # @word = Word.where("simplified_char = ?" , params[:word].delete(":"))
+    @word = Word.find_words(params[:word], params[:text])
     respond_to do |format|
       format.html 
       format.json {render :json => @word}

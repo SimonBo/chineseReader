@@ -12,5 +12,4 @@ namespace :dict do
       Word.create(traditional_char: traditional_char, simplified_char: simplified_char, pronunciation: pinyin, meaning: meaning)
     end
   end
-
 end

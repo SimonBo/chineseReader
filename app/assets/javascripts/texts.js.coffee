@@ -1,9 +1,10 @@
 $ ->
   $(".character").on 'click', (e) ->
-    target_word = $(this).text()
+    target_word = $(this).data('index')
+    target_text = $('#text').data('id')
     $.ajax
       type: 'GET'
-      url: "/words/find/:#{target_word}"
+      url: "/words/find/#{target_word}/#{target_text}"
       dataType: "json"
       error: (jqXHR, textStatus, errorThrown) ->
         $('#notice').append "AJAX Error: #{textStatus}"

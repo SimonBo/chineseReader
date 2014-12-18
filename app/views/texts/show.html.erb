@@ -6,12 +6,12 @@
   <div id='meaning'></div>
 </div>  
 
-<p>
+<div id='text' data-id=<%= @text.id %>>
   <strong>Content:</strong>
-  <% @text.content.each_char do |c| %>
-    <span class='character'><%= c %></span>
+  <% @text.content.each_char.with_index do |c, index| %>
+    <span class='character' data-index="<%= index%>"><%= c %></span>
   <% end %>
-</p>
+</div>
 
 <%= link_to 'Edit', edit_text_path(@text) %> |
 <%= link_to 'Back', texts_path %>
