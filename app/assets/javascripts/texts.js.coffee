@@ -7,12 +7,13 @@ $ ->
       url: "/words/find/#{target_word}/#{target_text}"
       dataType: "json"
       error: (jqXHR, textStatus, errorThrown) ->
-        $('#notice').append "AJAX Error: #{textStatus}"
+        $('#notice').text("AJAX Error: #{textStatus}") 
       success: (data, textStatus, jqXHR) ->
         console.log data
         if data.length >0
-          $('#character').text("#{target_word} ")
-          $('#pronunciation').text(data[0].pronunciation)
+          $('#character').text(data[0].simplified_char)
+          pinyin = PinyinConverter.convert(data[0].pronunciation)
+          $('#pronunciation').text(pinyin)
           $('#meaning').text(data[0].meaning)
         else
           $('#character').text('Not found')

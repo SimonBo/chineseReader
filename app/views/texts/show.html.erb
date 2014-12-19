@@ -9,7 +9,7 @@
 <div id='text' data-id=<%= @text.id %>>
   <strong>Content:</strong>
   <% @text.content.each_char.with_index do |c, index| %>
-    <span class='character' data-index="<%= index%>"><%= c %></span>
+    <span class='character' data-index="<%= index %>"><%= c %></span>
   <% end %>
 </div>
 

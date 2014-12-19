@@ -24,6 +24,7 @@ group :test do
   gem "shoulda-matchers", "~> 2.2.0"
   gem 'capybara-screenshot'
   gem 'cucumber-rails', :require => false
+  gem "minitest"
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
