@@ -1,5 +1,12 @@
 source 'https://rubygems.org'
 
+gem 'bootstrap-sass', '~> 3.3.1'
+gem 'haml'
+gem 'haml-rails', :group => :development
+gem 'autoprefixer-rails'
+
+gem 'devise'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'

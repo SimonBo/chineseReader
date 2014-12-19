@@ -1,0 +1,21 @@
+%h1 Listing words
+%table
+  %thead
+    %tr
+      %th Traditional char
+      %th Simplified char
+      %th Pronunciation
+      %th Meaning
+      %th{:colspan => "3"}
+  %tbody
+    - @words.each do |word|
+      %tr
+        %td= word.traditional_char
+        %td= word.simplified_char
+        %td= word.pronunciation
+        %td= word.meaning
+        %td= link_to 'Show', word
+        %td= link_to 'Edit', edit_word_path(word)
+        %td= link_to 'Destroy', word, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Word', new_word_path
