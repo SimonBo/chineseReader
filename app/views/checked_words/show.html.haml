@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Word:
+  = @checked_word.word
+%p
+  %b User:
+  = @checked_word.user
+%p
+  %b Counter:
+  = @checked_word.counter
+
+= link_to 'Edit', edit_checked_word_path(@checked_word)
+\|
+= link_to 'Back', checked_words_path

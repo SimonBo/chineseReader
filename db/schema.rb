@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141220090222) do
+ActiveRecord::Schema.define(version: 20141220092110) do
+
+  create_table "checked_words", force: true do |t|
+    t.integer  "word_id"
+    t.integer  "user_id"
+    t.integer  "counter"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "checked_words", ["user_id"], name: "index_checked_words_on_user_id"
+  add_index "checked_words", ["word_id"], name: "index_checked_words_on_word_id"
 
   create_table "texts", force: true do |t|
     t.text     "content"

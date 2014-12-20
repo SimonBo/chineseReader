@@ -1,0 +1,19 @@
+= form_for @checked_word do |f|
+  - if @checked_word.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@checked_word.errors.count, "error")} prohibited this checked_word from being saved:"
+      %ul
+        - @checked_word.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :word
+    = f.text_field :word
+  .field
+    = f.label :user
+    = f.text_field :user
+  .field
+    = f.label :counter
+    = f.number_field :counter
+  .actions
+    = f.submit 'Save'

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :checked_words
+
   devise_for :users
   resources :texts
 
