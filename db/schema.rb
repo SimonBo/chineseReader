@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141220092110) do
+ActiveRecord::Schema.define(version: 20141220094529) do
 
   create_table "checked_words", force: true do |t|
     t.integer  "word_id"
     t.integer  "user_id"
-    t.integer  "counter"
+    t.integer  "counter",    default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

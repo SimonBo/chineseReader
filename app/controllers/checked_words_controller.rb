@@ -61,6 +61,11 @@ class CheckedWordsController < ApplicationController
     end
   end
 
+  def mark_as_checked
+    checked_word = Word.where('simplified_char = ?', params[:checked_word])
+    checked_word.mark_as_checked(current_user)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_checked_word
