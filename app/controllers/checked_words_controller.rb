@@ -65,6 +65,7 @@ class CheckedWordsController < ApplicationController
     checked_word = Word.find(params[:checked_word])
     checked_word.mark_as_checked(current_user)
     render nothing: true
+
   end
 
   private
