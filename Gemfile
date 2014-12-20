@@ -6,6 +6,7 @@ gem 'haml-rails', :group => :development
 gem 'autoprefixer-rails'
 
 gem 'devise'
+gem 'rails_layout', :group => :development
 
 group :development do
   gem 'better_errors'
@@ -15,6 +16,7 @@ group :development do
   gem 'guard-rspec', require: false
   gem 'rb-fsevent', '~> 0.9.3'
   gem 'guard-cucumber'
+  gem 'guard-livereload', require: false
 end
 
 group :development, :test do

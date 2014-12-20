@@ -1,11 +1,21 @@
 %p#notice= notice
 #dict
   #character
+    %strong Character:
   #pronunciation
+    %strong Pinyin:
   #meaning
-<div id='text' data-id=#{@text.id}>
-- @text.content.each_char.with_index do |c, index|
-  %span.character{"data-index" => index}= c
+    %strong Meaning:
+
+#text{"data-id"=> @text.id}
+  - @text.content.each_char.with_index do |c, index|
+    %span.character{"data-index" => index}= c
+
+%strong Font
+= link_to '+', '#', class: 'btn btn-default', id:'font-inc'
+= link_to '-', '#', class: 'btn btn-default', id:'font-dec'
+= link_to 'Reset', '#', class: 'btn btn-default', id:'font-reset'
+%br
 = link_to 'Edit', edit_text_path(@text)
 |
 \#{link_to 'Back', texts_path}

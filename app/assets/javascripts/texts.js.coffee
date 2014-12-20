@@ -1,5 +1,24 @@
 $ ->
-  $(".character").on 'click', (e) ->
+  character = $(".character")
+  text = $('#text')
+  original_font_size = text.css('font-size')
+  $("#font-inc").on 'click', (e) ->
+    e.preventDefault;
+    font_size = text.css('font-size').replace('px', '')
+    inc_font_size = parseInt(font_size) + 1 + 'px'
+    text.css('font-size', inc_font_size )
+
+  $("#font-dec").on 'click', (e) ->
+    e.preventDefault;
+    font_size = text.css('font-size').replace('px', '')
+    dec_font_size = parseInt(font_size) - 1 + 'px'
+    text.css('font-size', dec_font_size )
+
+  $("#font-reset").on 'click', (e) ->
+    e.preventDefault;
+    text.css('font-size', original_font_size )
+
+  character.on 'click', (e) ->
     target_word = $(this).data('index')
     target_text = $('#text').data('id')
     $.ajax
@@ -10,11 +29,18 @@ $ ->
         $('#notice').text("AJAX Error: #{textStatus}") 
       success: (data, textStatus, jqXHR) ->
         console.log data
+        $('#notice').text()
         if data.length >0
-          $('#character').text(data[0].simplified_char)
-          pinyin = PinyinConverter.convert(data[0].pronunciation)
-          $('#pronunciation').text(pinyin)
-          $('#meaning').text(data[0].meaning)
+          $('#character').html("<strong>Character: </strong>")
+          $('#pronunciation').html("<strong>Pinyin: </strong>")
+          $('#meaning').html("<strong>Meaning: </strong>")
+          $('#character').append(data[0].simplified_char)
+          pinyin = PinyinConverter.convert(data[0].pronunciation).toString().replace(/[\][]/g, '')
+          $('#pronunciation').append(pinyin)
+          meanings = data[0].meaning.split '/'
+          for chunk in meanings
+            $('#meaning').append chunk
+            $('#meaning').append '<br>'
         else
           $('#character').text('Not found')
           $('#pronunciation').text('')

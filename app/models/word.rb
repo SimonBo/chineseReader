@@ -17,12 +17,12 @@ class Word < ActiveRecord::Base
     check_to = word_index +10 if text.length - word_index > 10
     # puts "Gonna check to index: #{check_to}"
 
-    (check_from..char_index).each do |iteration|
-      # puts "Iteration: #{iteration}"
-      unless text[check_from+iteration].nil?
-        text[check_from+iteration..check_to].each_char.with_index do |word, index|
-            checked_word = text[check_from+iteration..check_from+iteration+index]
-            # puts "Checking #{checked_word}"
+    (check_from..char_index).each_with_index do |iteration, index|
+      # puts "Iteration: #{iteration}, index #{index}"
+      unless text[check_from+index].nil?
+        text[check_from+index..check_to].each_char.with_index do |word, word_index|
+            checked_word = text[check_from+index..check_from+index+ word_index]
+            # puts "Checking #{checked_word} at index #{check_from+iteration..check_from+iteration+index}"
             unless checked_word.nil? or checked_word.blank? or !checked_word.include? char
               matches << checked_word if simplified_chars.include? checked_word and !matches.include? checked_word
             end
@@ -30,7 +30,8 @@ class Word < ActiveRecord::Base
       end
     end
 
-    final_match = matches.group_by(&:size).max.last
+    final_match = matches.group_by(&:size).max.last[0]
+    # puts final_match
     Word.where('simplified_char = ?', final_match)
   end
 end
