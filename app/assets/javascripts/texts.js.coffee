@@ -28,9 +28,16 @@ $ ->
       error: (jqXHR, textStatus, errorThrown) ->
         $('#notice').text("AJAX Error: #{textStatus}") 
       success: (data, textStatus, jqXHR) ->
-        console.log data
+        console.log data[0].simplified_char
         $('#notice').text()
         if data.length >0
+          checked_word = data[0].id
+          $.ajax
+            type: 'GET'
+            url: "/checked_words/mark_as_checked/#{checked_word}"
+            dataType: "json"
+
+
           $('#character').html("<strong>Character: </strong>")
           $('#pronunciation').html("<strong>Pinyin: </strong>")
           $('#meaning').html("<strong>Meaning: </strong>")

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   # Example of regular route:
     get 'words/find/:word/:text' => 'words#find'
+    get 'checked_words/mark_as_checked/:checked_word' => "checked_words#mark_as_checked", as: 'mark_as_checked'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

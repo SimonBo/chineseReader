@@ -62,8 +62,9 @@ class CheckedWordsController < ApplicationController
   end
 
   def mark_as_checked
-    checked_word = Word.where('simplified_char = ?', params[:checked_word])
+    checked_word = Word.find(params[:checked_word])
     checked_word.mark_as_checked(current_user)
+    render nothing: true
   end
 
   private
