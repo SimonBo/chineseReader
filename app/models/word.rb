@@ -1,4 +1,8 @@
 class Word < ActiveRecord::Base
+
+  def self.find_by_char(char)
+    where('simplified_char = ?', char)
+  end
   def self.find_words(word_index, text)
     text = Text.find(text).content
     word_index = word_index.to_i

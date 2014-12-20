@@ -28,12 +28,24 @@ DictionaryChecker =
     $('#meaning').html("<strong>Meaning: </strong>")
 
   render_dictionary_entry: (data) ->
-    $('#character').append(data[0].simplified_char)
+    DictionaryChecker.show_found_word(data)
+    DictionaryChecker.show_pinyin(data)
+    DictionaryChecker.show_meanings(data)
+
+  show_found_word: (data) ->
+    word = data[0].simplified_char
+    $('#character').append(word)
+
+  show_pinyin: (data) ->
     pinyin = PinyinConverter.convert(data[0].pronunciation).toString().replace(/[\][]/g, '')
     $('#pronunciation').append(pinyin)
-    meanings = data[0].meaning.split '/'
+
+  show_meanings: (data) ->
+    meanings = (word.meaning.replace(/[\/]/g, ', ') for word in data)
     for chunk in meanings
-      $('#meaning').append chunk
+      if /\w\d/i.test(chunk.toString())
+        chunk = PinyinConverter.convert(chunk)
+      $('#meaning').append chunk[1..-3]
       $('#meaning').append '<br>'
 
   render_not_found: ->
