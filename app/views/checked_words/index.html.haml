@@ -3,16 +3,14 @@
 %table
   %tr
     %th Word
-    %th User
-    %th Counter
+    %th Checked
     %th
     %th
     %th
 
   - @checked_words.each do |checked_word|
     %tr
-      %td= checked_word.word
-      %td= checked_word.user
+      %td= checked_word.word.simplified_char
       %td= checked_word.counter
       %td= link_to 'Show', checked_word
       %td= link_to 'Edit', edit_checked_word_path(checked_word)

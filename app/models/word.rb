@@ -1,8 +1,19 @@
 class Word < ActiveRecord::Base
 
+  def find_similar_words
+    found_similarities = []
+    nr_of_iterations = self.simplified_char.length
+    nr_of_iterations.times do |i|
+      checked_words = Word.where('simplified_char like ?', "%#{self.simplified_char[i-1]}%")
+      checked_words.each {|w| found_similarities << w if JSON.parse(w.pronunciation).size == JSON.parse(self.pronunciation).size }
+    end
+    return found_similarities
+  end
+
   def self.find_by_char(char)
     where('simplified_char = ?', char)
   end
+
   def self.find_words(word_index, text)
     text = Text.find(text).content
     word_index = word_index.to_i
@@ -25,16 +36,16 @@ class Word < ActiveRecord::Base
       # puts "Iteration: #{iteration}, index #{index}"
       unless text[check_from+index].nil?
         text[check_from+index..check_to].each_char.with_index do |word, word_index|
-            checked_word = text[check_from+index..check_from+index+ word_index]
+          checked_word = text[check_from+index..check_from+index+ word_index]
             # puts "Checking #{checked_word} at index #{check_from+iteration..check_from+iteration+index}"
             unless checked_word.nil? or checked_word.blank? or !checked_word.include? char
               matches << checked_word if simplified_chars.include? checked_word and !matches.include? checked_word
             end
+          end
         end
       end
-    end
 
-    final_match = matches.group_by(&:size).max.last[0]
+      final_match = matches.group_by(&:size).max.last[0]
     # puts final_match
     Word.where('simplified_char = ?', final_match)
   end

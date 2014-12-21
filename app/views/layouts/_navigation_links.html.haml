@@ -1,0 +1,7 @@
+- if user_signed_in?
+  = link_to 'My words', checked_words_path(current_user)
+- else 
+  = link_to new_user_session_path do
+    %button.btn.btn-sm.btn-default Sign in
+  = link_to new_user_registration_path do
+    %button.btn.btn-sm.btn-default Sign up

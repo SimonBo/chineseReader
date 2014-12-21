@@ -4,12 +4,14 @@ class CheckedWordsController < ApplicationController
   # GET /checked_words
   # GET /checked_words.json
   def index
-    @checked_words = CheckedWord.all
+    @user = User.find(current_user)
+    @checked_words = @user.checked_words
   end
 
   # GET /checked_words/1
   # GET /checked_words/1.json
   def show
+    @pronunciation_options = @checked_word.pick_pronunciation_options
   end
 
   # GET /checked_words/new
@@ -56,7 +58,7 @@ class CheckedWordsController < ApplicationController
   def destroy
     @checked_word.destroy
     respond_to do |format|
-      format.html { redirect_to checked_words_url, notice: 'Checked word was successfully destroyed.' }
+      format.html { redirect_to user_checked_words_url(current_user), notice: 'Checked word was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

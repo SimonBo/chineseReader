@@ -12,9 +12,9 @@ Rails.application.routes.draw do
   root 'texts#index'
 
   # Example of regular route:
-    get 'words/find/:word/:text' => 'words#find'
-    get 'checked_words/mark_as_checked/:checked_word' => "checked_words#mark_as_checked", as: 'mark_as_checked'
-
+  get 'words/find/:word/:text' => 'words#find'
+  get 'checked_words/mark_as_checked/:checked_word' => "checked_words#mark_as_checked", as: 'mark_as_checked'
+  # get 'users/:user_id/checked_words' => "checked_words#index", as: 'user_checked_words'
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 

@@ -2,13 +2,14 @@
 
 %p
   %b Word:
-  = @checked_word.word
+  = @checked_word.word.simplified_char
+
 %p
-  %b User:
-  = @checked_word.user
-%p
-  %b Counter:
+  %b Checked:
   = @checked_word.counter
+%p
+  %b Pinyin:
+  = @checked_word.word.pronunciation
 
 = link_to 'Edit', edit_checked_word_path(@checked_word)
 \|
