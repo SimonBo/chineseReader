@@ -5,7 +5,7 @@ class CheckedWordsController < ApplicationController
   # GET /checked_words.json
   def index
     @user = User.find(current_user)
-    @checked_words = @user.checked_words
+    @checked_words = @user.checked_words.order(counter: :desc)
   end
 
   # GET /checked_words/1

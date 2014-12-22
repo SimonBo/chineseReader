@@ -7,9 +7,12 @@
 %p
   %b Checked:
   = @checked_word.counter
-%p
-  %b Pinyin:
-  = @checked_word.word.pronunciation
+/ %p
+/   %b Pinyin:
+/   = @checked_word.word.pronunciation
+#word_id{"data-id"=> @checked_word.word.id}
+%h3 Test
+= render 'test'
 
 = link_to 'Edit', edit_checked_word_path(@checked_word)
 \|

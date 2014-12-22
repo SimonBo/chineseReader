@@ -7,6 +7,13 @@ class Word < ActiveRecord::Base
       checked_words = Word.where('simplified_char like ?', "%#{self.simplified_char[i-1]}%")
       checked_words.each {|w| found_similarities << w if JSON.parse(w.pronunciation).size == JSON.parse(self.pronunciation).size }
     end
+    if found_similarities.size < 4
+      puts found_similarities.size
+      nr_of_words_to_find = 4 - found_similarities.size 
+      extra_words = Word.where("length(pronunciation) = #{self.pronunciation.size}").sample(nr_of_words_to_find)
+      puts "Found extra words: #{extra_words}"
+      extra_words.each {|w| found_similarities << w }
+    end
     return found_similarities
   end
 
